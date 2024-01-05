@@ -12,7 +12,25 @@ const isValidPassword = () => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/.test(password
 // Email must contain an @ symbol and a domain name
 const isValidEmail = () => /^[^@]+@[^@.]+\.[a-z]+$/i.test(emailInput.value);
 
+// Refactored using functions
+form.addEventListener('submit', e => {
+  const validator = (inputElement, validationFunction) => {
+    if (validationFunction()) {
+      inputElement.closest('label').className = 'valid';
+      inputElement.nextElementSibling.style.display = 'none';
+    } else {
+      e.preventDefault();
+      inputElement.closest('label').className = 'error';
+      inputElement.nextElementSibling.style.display = 'block';
+    }
+  };
 
+  validator(usernameInput, isValidUsername);
+  validator(emailInput, isValidEmail);
+  validator(passwordInput, isValidPassword);
+});
+
+/*
 // Add an event listener to the form listening for the submit event 
 form.addEventListener('submit', e => {
   // validate the username by calling the isValidUsername function
@@ -67,9 +85,4 @@ form.addEventListener('submit', e => {
   }
 
 });
-
-
-
-
-
-
+*/
