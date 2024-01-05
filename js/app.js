@@ -14,19 +14,62 @@ const isValidEmail = () => /^[^@]+@[^@.]+\.[a-z]+$/i.test(emailInput.value);
 
 
 // Add an event listener to the form listening for the submit event 
-  
+form.addEventListener('submit', e => {
   // validate the username by calling the isValidUsername function
   // if the username is valid, 
+  if (isValidUsername()) {
     // add the class "valid" to the parent label of the input
-  // else 
+    usernameInput.closest('label').className = 'valid';
+    // change the display value of the span to hide the hint from the user
+    usernameInput.nextElementSibling.style.display = 'none';
+    // else 
+  } else {  
     // prevent the form from being submitted
+    e.preventDefault();
     // set the class of the label to be "error"
+    usernameInput.closest('label').className = 'error';
     // change the display value of the span to show the hint to the user
-
+    usernameInput.nextElementSibling.style.display = 'block';
+  }
 
   // validate the email by calling the isValidEmail function
-    // apply the error or valid class based on the returned value
-
+      // apply the error or valid class based on the returned value
+  if (isValidEmail()) {
+      // add the class "valid" to the parent label of the input
+      emailInput.closest('label').className = 'valid';
+      // change the display value of the span to hide the hint from the user
+      emailInput.nextElementSibling.style.display = 'none';
+      // else 
+    } else {  
+      // prevent the form from being submitted
+      e.preventDefault();
+      // set the class of the label to be "error"
+      emailInput.closest('label').className = "error";
+      // change the display value of the span to show the hint to the user
+      emailInput.nextElementSibling.style.display = 'block';
+    }
 
   // validate the password by calling the isValidPassword function
     // apply the error or valid class based on the returned value
+  if (isValidPassword()) {
+      // add the class "valid" to the parent label of the input
+      passwordInput.closest('label').className = "valid";
+      // change the display value of the span to hide the hint from the user
+      passwordInput.nextElementSibling.style.display = 'none';
+      // else 
+    } else {  
+      // prevent the form from being submitted
+      e.preventDefault();
+      // set the class of the label to be "error"
+      passwordInput.closest('label').className = "error";
+      // change the display value of the span to show the hint to the user
+      passwordInput.nextElementSibling.style.display = 'block';
+  }
+
+});
+
+
+
+
+
+
